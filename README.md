@@ -1,6 +1,6 @@
 # Smart Transit & Crash Telemetry Hub
 
-**Author:** m.kane  
+**Author:** MTG  
 **Stack:** Pure Java 17 · Raw JDBC · MySQL 8 · Maven  
 **Architecture:** DAO Pattern · Singleton · Runnable / ExecutorService  
 
