@@ -49,11 +49,13 @@ public class MainController {
     private static final Logger LOG = Logger.getLogger(MainController.class.getName());
 
     // ── Configuration constants ───────────────────────────────────────────────
-    private static final int    FLEET_SIZE         = 50;   // Number of simulated vehicles
-    private static final int    SIM_DURATION_SECS  = 60;   // How long to run before forcing shutdown
-    private static final String CSV_OUTPUT_DIR     = "output/ml_exports";   // relative path
-    private static final String UNIT_NAME_PREFIX   = "VFU"; // Virtual Fleet Unit
-    private static final int    API_PORT           = 8080;  // REST API port for dashboard
+    private static final int    FLEET_SIZE         = 50;
+    private static final int    SIM_DURATION_SECS  = 60;
+    private static final String CSV_OUTPUT_DIR     = "output/ml_exports";
+    private static final String UNIT_NAME_PREFIX   = "VFU";
+    // Railway injects $PORT; fallback to 8080 for local dev
+    private static final int    API_PORT           =
+        Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
 
     public static void main(String[] args) {
 
