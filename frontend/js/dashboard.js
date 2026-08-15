@@ -20,7 +20,9 @@
  */
 
 // ── Config ──────────────────────────────────────────────────────────────────
-const API_BASE    = 'http://localhost:8080/api';
+// API_BASE: reads from window.__API_BASE__ (injected by index.html meta tag in production)
+// Falls back to localhost:8080 for local development.
+const API_BASE    = window.__API_BASE__ || 'http://localhost:8080/api';
 const API_POLL_MS = 500;
 const FLEET_SIZE  = 50;
 
