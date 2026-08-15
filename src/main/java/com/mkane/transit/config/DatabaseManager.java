@@ -31,15 +31,21 @@ public final class DatabaseManager {
 
     private static final Logger LOG = Logger.getLogger(DatabaseManager.class.getName());
 
-    // ── Connection parameters — externalise to a .properties file in prod ──
-    private static final String JDBC_URL      = "jdbc:mysql://localhost:3306/smart_transit_hub"
-                                                + "?useSSL=false"
-                                                + "&serverTimezone=UTC"
-                                                + "&rewriteBatchedStatements=true"  // crucial for batch perf
-                                                + "&allowPublicKeyRetrieval=true";
-    private static final String JDBC_USER     = "transit_user";
-    private static final String JDBC_PASSWORD = "transit_pass";
-    private static final String JDBC_DRIVER   = "com.mysql.cj.jdbc.Driver";
+    // ── Connection parameters — read from env vars (Railway injects these) ──
+    // Local dev fallback: set DB_HOST=localhost, DB_USER=transit_user, etc.
+    private static final String DB_HOST     = System.getenv().getOrDefault("DB_HOST",     "localhost");
+    private static final String DB_PORT     = System.getenv().getOrDefault("DB_PORT",     "3306");
+    private static final String DB_NAME     = System.getenv().getOrDefault("DB_NAME",     "smart_transit_hub");
+    private static final String JDBC_USER   = System.getenv().getOrDefault("DB_USER",     "transit_user");
+    private static final String JDBC_PASSWORD = System.getenv().getOrDefault("DB_PASS",   "transit_pass");
+    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+
+    private static final String JDBC_URL =
+        "jdbc:mysql://" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME
+        + "?useSSL=false"
+        + "&serverTimezone=UTC"
+        + "&rewriteBatchedStatements=true"
+        + "&allowPublicKeyRetrieval=true";
 
     /** Singleton instance, lazily created and held by the inner holder class. */
     private Connection connection;
