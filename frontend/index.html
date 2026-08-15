@@ -13,6 +13,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/dashboard.css" />
+
+  <!-- ── API Base URL (production override) ──────────────────────────────
+       In production (Vercel), set the RAILWAY_API_URL environment variable
+       in Vercel dashboard, or replace the placeholder below manually.
+       Leave empty to use localhost:8080 for local dev.
+  ──────────────────────────────────────────────────────────────────────── -->
+  <script>
+    // window.__API_BASE__ is read by dashboard.js.
+    // Replace the string below with your Railway backend URL after deploying:
+    // e.g. "https://smart-transit-hub.up.railway.app/api"
+    window.__API_BASE__ = "";  // leave empty for localhost fallback
+  </script>
 </head>
 <body>
 
